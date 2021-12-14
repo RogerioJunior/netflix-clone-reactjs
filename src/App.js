@@ -11,6 +11,7 @@ export default () => {
 
     const [movieList, setMovieList] = useState([]);
     const [featureData, setFeatureData] = useState(null);
+    const [blackHeader, setBlackHeader] = useState(false);
 
     useEffect(() => {
         const loadAll = async () => {
@@ -29,10 +30,25 @@ export default () => {
         loadAll();
     }, []);
 
+    useEffect(()=>{
+        const scrollListener = () => {
+            if(window.scrollY > 10) {
+                setBlackHeader(true);
+            } else {
+                setBlackHeader(false);
+            }
+        }
+
+        window.addEventListener('scroll', scrollListener);
+        return () => {
+            window.removeEventListener('scroll', scrollListener);
+        }
+    },[]);
+
     return (
         <div className="page">
 
-            <Header />
+            <Header black={blackHeader} />
 
             {featureData && <FeaturedMovie item={featureData} />
             }
@@ -43,6 +59,18 @@ export default () => {
 
                 ))}
             </section>
+
+            <footer>
+            <p><a rel="noreferrer" target="_blank" href="https://github.com/RogerioJunior">Created by Rto&reg;</a></p>
+            <p>Copyright images for netflix</p>
+            <p>Database taken from the Themoviedb.org</p>
+            </footer>
+
+            {movieList.length <= 0 &&       
+            <div className="loading">
+                <img src="https://media.filmelier.com/noticias/br/2020/03/Netflix_LoadTime.gif" alt="Loading" />
+            </div>
+            }
         </div>
     );
 }

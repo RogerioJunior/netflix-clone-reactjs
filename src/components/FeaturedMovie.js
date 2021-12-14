@@ -10,6 +10,11 @@ export default ({ item }) => {
         genres.push( item.genres[i].name);
     };
 
+    let description = item.overview;
+    if(description.length > 230) {
+        description = description.substring(0, 230) + '...';
+    }
+
     return (
         <section className="feature" style={{
             backgroundSize: 'cover',
@@ -25,7 +30,7 @@ export default ({ item }) => {
                         <div className="feature--seasons">
                             {item.number_of_seasons} Season{item.number_of_seasons !== 1 ? 's' : ''}</div>
                     </div>
-                    <div className="feature--description">{item.overview}</div>
+                    <div className="feature--description">{description}</div>
                     <div className="feature--buttons">
                         <a href={`/watch/${item.id}`} className="feature--watchbutton">► Watch</a>
                         <a href={`/list/add/${item.id}`}className="feature--mylistbutton">+ My List</a>
