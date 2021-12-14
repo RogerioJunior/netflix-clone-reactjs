@@ -61,7 +61,7 @@ export default () => {
             </section>
 
             <footer>
-            <p><a rel="noreferrer" target="_blank" href="https://github.com/RogerioJunior">Created by Rto&reg;</a></p>
+            <p><a rel="noreferrer" target="_blank" href="https://github.com/RogerioJunior/netflix-clone-reactjs">Created by Rto&reg;</a></p>
             <p>Copyright images for netflix</p>
             <p>Database taken from the Themoviedb.org</p>
             </footer>
